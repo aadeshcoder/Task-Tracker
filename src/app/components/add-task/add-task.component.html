@@ -1,4 +1,4 @@
-<form *ngIf="showAddTask" class="add-form" (ngSubmit) = "onSubmit()">
+<form class="add-form" (ngSubmit)="onSubmit()">
   <div class="form-control">
     <label for="text">Task</label>
     <input
@@ -28,5 +28,14 @@
       id="reminder"
     />
   </div>
-  <input type="submit" value="Save Task" class="btn btn-block" />
+  <mat-dialog-actions style="display: flex; justify-content: center">
+    <input mat-button mat-dialog-close type="submit" value="Save" class="btn" />
+    <input
+      mat-button
+      mat-dialog-close
+      type="button"
+      value="Cancel"
+      class="btn"
+    />
+  </mat-dialog-actions>
 </form>
