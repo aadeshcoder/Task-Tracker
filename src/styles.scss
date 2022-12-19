@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-* {
+* { 
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -50,7 +51,7 @@ body {
 }
 
 .form-control label {
-  display: block;
+  display: inline-block;
 }
 
 .form-control input {
@@ -64,14 +65,16 @@ body {
 .form-control-check {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .form-control-check label {
-  flex: 1;
+  flex: 0;
 }
 
 .form-control-check input {
-  flex: 2;
+  // flex: 2;
   height: 20px;
 }
+html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

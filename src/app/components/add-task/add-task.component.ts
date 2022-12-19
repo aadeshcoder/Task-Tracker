@@ -1,23 +1,30 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Task } from 'src/app/Task';
 import { UiService } from 'src/app/services/ui.service';
 import {Subscription} from "rxjs";
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss']
 })
-export class AddTaskComponent {
-  @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
+export class AddTaskComponent implements OnInit {
+  tasks: Task[] = [];
+
+
+  // @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
   text: string;
   day: string;
   reminder: boolean = false
   showAddTask :boolean;
   subscription: Subscription;
   
-  constructor (private uiService : UiService) {
+  constructor (private uiService : UiService, private dataService : DataService) {
     this.subscription = this.uiService.onToggle().subscribe((value) => (this.showAddTask = value))
+  }
+
+  ngOnInit(): void {
   }
 
   onSubmit() {
@@ -30,8 +37,9 @@ export class AddTaskComponent {
       day: this.day,
       reminder: this.reminder
     }
+    // this.onAddTask.emit(newTask);
 
-    this.onAddTask.emit(newTask);
+    this.dataService.sendAddTaskEvent(newTask);
 
     this.text = ''
     this.day = ''
